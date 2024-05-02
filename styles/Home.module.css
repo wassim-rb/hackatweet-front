@@ -1,22 +1,73 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 4rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #151B2C;
 }
 
-.title {
-  line-height: 1.15;
-  font-size: 4rem;
+
+
+.imageside {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    max-height: 100%;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+
+.loginside {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
-.title a:hover, .title a:focus, .title a:active {
-  text-decoration: underline;
+.logo {
+    margin-bottom: 30px; 
+}
+
+.h1 {
+    color: white;
+    font-size: 4em;
+    margin-bottom: 10px;
+}
+
+.p1 {
+    color: white;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.p2 {
+  color: white;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.signup, .signin {
+    background-color: #1DA1F2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    width: 200px; /* fixed width for better control */
+    text-align: center;
+    margin: 5px 0; /* spacing between buttons */
+}
+
+.signin {
+    background-color: transparent;
+    border: 2px solid #1DA1F2;
 }
