@@ -4,6 +4,7 @@ import { login, logout } from '../reducers/user';
 import React from 'react';
 import styles from '../styles/SignInModal.module.css'; 
 
+
 const SignInModal = ({ isOpen, onClose }) => {
 
   const dispatch = useDispatch();
@@ -11,7 +12,8 @@ const SignInModal = ({ isOpen, onClose }) => {
 
   const [signInUsername, setSignInUsername] = useState('');
 	const [signInPassword, setSignInPassword] = useState('');
-
+  const [error, setError] = useState('');
+  
 
   const handleConnection = () => {
 
@@ -25,7 +27,10 @@ const SignInModal = ({ isOpen, onClose }) => {
 					dispatch(login({ username: signInUsername, token: data.token }));
 					setSignInUsername('');
 					setSignInPassword('');
-				}
+          location.assign('/tweetpage');
+				} else {
+           setError("Invalid username or password")
+        }
 			});
 	};
 
@@ -37,8 +42,20 @@ const SignInModal = ({ isOpen, onClose }) => {
         <div className={styles.modalContent}>
           <button className={styles.closeButton} onClick={onClose}>×</button>
           <h2>Connect to your Hackatweet account</h2>
-          <input type="text" placeholder="Username"  onChange={(e) => setSignInUsername(e.target.value)} value={signInUsername}/>
-          <input type="password" placeholder="Password"  onChange={(e) => setSignInPassword(e.target.value)} value={signInPassword}/>
+         
+          {error && <span style={{ color: 'red' }}>{error}</span>}
+          
+          <div>
+            <br/>
+            <input type="text" placeholder="Username"  onChange={(e) =>
+                  {
+                    setSignInUsername(e.target.value) 
+                    setError('')
+                  } } value={signInUsername} 
+                />
+              
+            <input type="password" placeholder="Password"  onChange={(e) => setSignInPassword(e.target.value)} value={signInPassword}/>
+          </div>
           <button onClick={() => handleConnection()}>Sign in</button>
         </div>
       </div>

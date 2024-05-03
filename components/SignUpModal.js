@@ -13,7 +13,7 @@ const SignUpModal = ({ isOpen, onClose }) => {
   const [signUpFirstName, setSignUpFirstName] = useState('');
   const [signUpUsername, setSignUpUsername] = useState('');
 	const [signUpPassword, setSignUpPassword] = useState('');
-  
+  const [error, setError] = useState('');
 
   const handleRegister = () => {
 		fetch('http://localhost:3000/users/signup', {
@@ -27,7 +27,11 @@ const SignUpModal = ({ isOpen, onClose }) => {
 					setSignUpFirstName('');
           setSignUpUsername('');
 					setSignUpPassword('');
+          location.assign('/tweetpage');
 				}
+        else {
+          setError("username already existing")
+        }
 			});
 	};
 
@@ -38,9 +42,19 @@ const SignUpModal = ({ isOpen, onClose }) => {
         <div className={styles.modalContent}>
         <button className={styles.closeButton} onClick={onClose}>×</button>
           <h2>Create your Hackatweet account</h2>
-          <input type="text" placeholder="Firstname" onChange={(e) => setSignUpFirstName(e.target.value)} value={signUpFirstName}/>
-          <input type="text" placeholder="Username" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername}/>
-          <input type="password" placeholder="Password" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword}/>
+          {error && <span style={{ color: 'red' }}>{error}</span>}
+         
+         <div>
+          <br />
+            <input type="text" placeholder="Firstname" onChange={(e) => 
+                {
+                  setSignUpFirstName(e.target.value)
+                  setError('')
+                }
+                } value={signUpFirstName}/>
+            <input type="text" placeholder="Username" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername}/>
+            <input type="password" placeholder="Password" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword}/>
+        </div>
           <button onClick={() => handleRegister()}>Sign up</button>
         </div>
       </div>

@@ -1,14 +1,11 @@
 .container {
   color: white;
   display: grid;
-  background-color: black;
+  background-color: #181c2c;
   height: 100vh;
   display: flex;
 }
-.left {
-  width: 25vw;
-  border: solid red;
-}
+
 
 .middle {
   width: 50vw;
@@ -34,4 +31,73 @@
   size: 10;
   height: 100%;
   margin: 20px;
+}
+
+/* CSS for left side */
+.left {
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; 
+  height: 100vh;
+  color: white;
+  padding: 20px 0;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; 
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar {
+  width: 70px; 
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.bottomSection {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: row; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+.username, .firstname {
+  font-size: 20px; 
+  margin: 0; 
+  font-size:larger;
+}
+
+.username {
+  color: gray;
+}
+
+.logoutButton {
+  padding: 10px 20px;
+  font-size: 16px; 
+  cursor: pointer;
+  color: white;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border: 2px solid #1DA1F2;
 }
