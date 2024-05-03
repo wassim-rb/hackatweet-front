@@ -15,7 +15,7 @@ function Tweet() {
   const token = useSelector((state) => state.user.value);
   const user = useSelector((state) => state.user.value);
 
-  const trends = [
+/*const trends = [
     { hashtag: "#hackatweet", tweets: 2 },
     { hashtag: "#first", tweets: 1 },
     { hashtag: "#poww", tweets: 177 },
@@ -23,7 +23,7 @@ function Tweet() {
     { hashtag: "#tranch", tweets: 47 },
     { hashtag: "#buisterdinette", tweets: 88 },
     { hashtag: "#huchhuch", tweets: 9 },
-  ];
+  ];*/
 
   useEffect(() => {
     fetch("http://localhost:3000/tweet/gettweets")
@@ -73,6 +73,22 @@ function Tweet() {
       });
   };
 
+
+// recupération hashtag pour panel à droite
+
+const [trends, setTrends] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/tweet/gethashtags")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success && data.data.length > 0) {
+          setTrends(data.data.map(ht => ({ hashtag: ht._id, tweets: ht.count })));
+        }
+      });
+  }, []);
+
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -106,7 +122,7 @@ function Tweet() {
               setaddNewDescription(e.target.value);
               setCounter(e.target.value);
             }}
-            placeholder="Enter Details..."
+            placeholder="What's up ?"
           />
           <div className={styles.counteretBouton}>
             <div className={styles.counter}>{counter.length}/280</div>
@@ -135,6 +151,11 @@ function Tweet() {
           ))}
         </div>
       </div>
+
+      
+
+
+
     </div>
   );
 }
