@@ -3,7 +3,6 @@ import { useState } from "react";
 import styles from "../styles/tweets.module.css";
 import { logout } from "../reducers/user";
 import { useDispatch, useSelector } from "react-redux";
-import { useSelector } from "react-redux";
 
 function Tweet() {
   const dispatch = useDispatch();
