@@ -1,17 +1,45 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/tweets.module.css";
 import { logout } from "../reducers/user";
 import { useDispatch, useSelector } from "react-redux";
+import TweetPop from "./TweetPop";
 
 function Tweet() {
   const dispatch = useDispatch();
 
   const [counter, setCounter] = useState("");
   const [addNewDescription, setaddNewDescription] = useState("");
+  const [dataTweet, setdataTweet] = useState([]);
 
   const token = useSelector((state) => state.user.value);
   const user = useSelector((state) => state.user.value);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/tweet/gettweets")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.result);
+        if (data.result.length > 0) {
+          return setdataTweet(data.result);
+        } else {
+          return { result: false };
+        }
+      });
+  }, [addNewDescription]);
+
+  const allTweet = dataTweet.map((elments, i) => {
+    return (
+      // <TweetPop key={i} />
+      <div key={i} className={styles.tweetPop}>
+        {token.username}
+        {elments.description}
+      </div>
+    );
+  });
+  // dataTweet.map((elments, i) => {
+  //   return
+  // })
 
   const handleLogout = () => {
     dispatch(logout());
@@ -19,17 +47,18 @@ function Tweet() {
   };
 
   const handleClick = () => {
-    console.log("click post");
+    console.log(addNewDescription);
     fetch("http://localhost:3000/tweet/tweetUser", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        token: token,
+        token: token.token,
         description: addNewDescription,
       }),
     })
       .then((response) => response.json())
-      .then(() => {
+      .then((data) => {
+        console.log(data);
         setaddNewDescription("");
       });
   };
@@ -63,8 +92,11 @@ function Tweet() {
             // type="textarea"
             cols="45"
             maxLength="280"
-            onChange={(e) => setCounter(e.target.value)}
-            value={counter}
+            onChange={(e) => {
+              setaddNewDescription(e.target.value);
+              setCounter(e.target.value);
+            }}
+            placeholder="Enter Details..."
           />
           <div className={styles.counteretBouton}>
             <div className={styles.counter}>{counter.length}/280</div>
@@ -75,6 +107,7 @@ function Tweet() {
               Tweet
             </button>
           </div>
+          <div>{allTweet}</div>
         </div>
       </div>
       <div className={styles.right}>

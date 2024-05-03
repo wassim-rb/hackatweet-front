@@ -40,6 +40,11 @@
   margin: 20px;
 }
 
+.tweetPop {
+  border: red;
+  display: flex;
+}
+
 /* CSS for left side */
 .left {
   width: 25vw;
