@@ -13,6 +13,17 @@ function Tweet() {
   const token = useSelector((state) => state.user.value);
   const user = useSelector((state) => state.user.value);
 
+
+  const trends = [
+    { hashtag: '#hackatweet', tweets: 2 },
+    { hashtag: '#first', tweets: 1 },
+    { hashtag: '#poww', tweets: 177},
+    { hashtag: '#feex', tweets: 3 },
+    { hashtag: '#tranch', tweets: 47 },
+    { hashtag: '#buisterdinette', tweets: 88 },
+    { hashtag: '#huchhuch', tweets: 9 },
+    ];
+
   const handleLogout = () => {
     dispatch(logout());
     location.assign("/home");
@@ -45,7 +56,7 @@ function Tweet() {
           <div className={styles.userDetails}>
             <img src="profile.png" alt="John" className={styles.avatar} />
             <div>
-              <p className={styles.firstname}> john {user.firstname}</p>
+              <p className={styles.firstname}>{user.firstname}</p>
               <p className={styles.username}>@{user.username}</p>
             </div>
           </div>
@@ -77,9 +88,21 @@ function Tweet() {
           </div>
         </div>
       </div>
+
       <div className={styles.right}>
-        <p>oiseau</p>
+
+                <p className={styles.trends}>Trends</p>
+                <div className={styles.hashtags}>
+                {trends.map((trend, index) => (
+                    <p key={index} className={styles.trendItem}>
+                        {trend.hashtag} <br/><span className={styles.tweetCount}>{trend.tweets} Tweets</span>
+                        <div><br/> </div>
+                    </p>
+                    
+                ))}
+                </div>
       </div>
+
     </div>
   );
 }
