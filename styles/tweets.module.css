@@ -1,5 +1,4 @@
 .container {
-  color: white;
   display: grid;
   background-color: #181c2c;
   height: 100vh;
@@ -23,15 +22,23 @@
 }
 
 .textarea {
-  color: white;
   background-color: rgba(0, 0, 0, 0);
   border-top: none;
   border-right: none;
   border-left: none;
   size: 10;
   height: 100%;
+  margin: 50px;
+  padding: 5px;
+}
+
+.counter {
+  text-align: right;
+}
+.homeheader {
   margin: 20px;
 }
+<<<<<<< HEAD
 
 /* CSS for left side */
 .left {
@@ -100,4 +107,18 @@
   outline: none;
   background-color: transparent;
   border: 2px solid #1DA1F2;
+=======
+.boutonTweet {
+  background-color: blue;
+  border-radius: 20px;
+  width: 60px;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.counteretBouton {
+  display: flex;
+  justify-content: right;
+>>>>>>> ninafrontend
 }

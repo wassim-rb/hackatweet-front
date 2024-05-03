@@ -1,65 +1,81 @@
 import React from "react";
 import { useState } from "react";
 import styles from "../styles/tweets.module.css";
-import { logout } from '../reducers/user';
-import { useDispatch, useSelector } from 'react-redux';
+import { logout } from "../reducers/user";
+import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Tweet() {
-  const [counter, setCounter] = useState("");
-
-  const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
 
-   const handleLogout = () => {
+  const [counter, setCounter] = useState("");
+  const [addNewDescription, setaddNewDescription] = useState("");
+
+  const token = useSelector((state) => state.user.value);
+  const user = useSelector((state) => state.user.value);
+
+  const handleLogout = () => {
     dispatch(logout());
-    location.assign('/home');
+    location.assign("/home");
   };
-  console.log(user)
+
+  const handleClick = () => {
+    console.log("click post");
+    fetch("http://localhost:3000/tweet/tweetUser", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token: token,
+        description: addNewDescription,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        setaddNewDescription("");
+      });
+  };
 
   return (
     <div className={styles.container}>
-
       <div className={styles.left}>
-
         <div className={styles.profile}>
-            <img src="twitter-64.png" alt="Profile" className={styles.logo} />
+          <img src="twitter-64.png" alt="Profile" className={styles.logo} />
         </div>
 
         <div className={styles.bottomSection}>
-            <div className={styles.userDetails}>
-                <img src='profile.png' alt="John" className={styles.avatar} />
-                <div>
-                    <p className={styles.firstname}> john {user.firstname}</p>
-                    <p className={styles.username}>@{user.username}</p>
-                </div>
+          <div className={styles.userDetails}>
+            <img src="profile.png" alt="John" className={styles.avatar} />
+            <div>
+              <p className={styles.firstname}> john {user.firstname}</p>
+              <p className={styles.username}>@{user.username}</p>
             </div>
-            <button className={styles.logoutButton} onClick={handleLogout}>
-                Logout
-            </button>
+          </div>
+          <button className={styles.logoutButton} onClick={handleLogout}>
+            Logout
+          </button>
         </div>
-
       </div>
 
       <div className={styles.middle}>
         <div className={styles.headerMiddle}>
-          <p>HOME</p>
-          {/* <textarea
+          <p className={styles.homeheader}>HOME</p>
+          <textarea
             className={styles.textarea}
-            type="text"
-            name="description"
-            size="280"
-            required
-            //class="input"
-            placeholder="Enter the new post"
-          /> */}
-          <input
-            className={styles.textarea}
-            type="textarea"
-            maxlength="280"
+            // type="textarea"
+            cols="45"
+            maxLength="280"
             onChange={(e) => setCounter(e.target.value)}
             value={counter}
           />
-          {counter.length}
+          <div className={styles.counteretBouton}>
+            <div className={styles.counter}>{counter.length}/280</div>
+            <button
+              className={styles.boutonTweet}
+              onClick={() => handleClick()}
+            >
+              Tweet
+            </button>
+          </div>
         </div>
       </div>
       <div className={styles.right}>
