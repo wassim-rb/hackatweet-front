@@ -3,9 +3,6 @@ import Head from "next/head";
 
 import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-
-import { Provider } from "react-redux";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import user from "../reducers/user";
 
 import { persistStore, persistReducer } from "redux-persist";

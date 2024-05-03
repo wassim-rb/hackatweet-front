@@ -31,4 +31,7 @@
   border-top: none;
   border-right: none;
   border-left: none;
+  size: 10;
+  height: 100%;
+  margin: 20px;
 }
