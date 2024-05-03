@@ -1,13 +1,13 @@
 .container {
   display: grid;
   background-color: #181c2c;
-  height: 100vh;
+  height: 100%;
   display: flex;
 }
 
 .middle {
   width: 50vw;
-  border-left: solid 1px rgb(191, 191, 188); 
+  border-left: solid 1px rgb(191, 191, 188);
   border-right: solid 1px rgb(191, 191, 183);
 }
 
@@ -25,7 +25,7 @@
   border-left: none;
   size: 10;
   height: 100%;
-  margin: 50px;
+  margin: 20px;
   padding: 5px;
 }
 
@@ -35,10 +35,22 @@
 .homeheader {
   margin: 20px;
 }
-
+.logotweetPop {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
 .tweetPop {
-  border: red;
+  margin: 5px;
+  padding: 10px;
+  border-top: solid #a2b9bc 1px;
   display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.desc {
+  margin-top: 2vh;
 }
 
 /* CSS for left side */
@@ -82,22 +94,22 @@
 }
 
 .userDetails {
+  /* position: relative; */
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 }
 
-
 .firstname {
-  font-size: x-large; 
+  font-size: x-large;
   margin: 0;
   font-weight: bold;
 }
 
 .username {
   color: gray;
-  font-size: large; 
+  font-size: large;
   margin: 0;
 }
 
@@ -126,17 +138,15 @@
 }
 
 .counteretBouton {
+  margin-bottom: 8px;
   display: flex;
   justify-content: right;
 }
 
-
-
-
 /* CSS for right side */
 .right {
-  width: 25vw; 
-  padding: 20px; 
+  width: 25vw;
+  padding: 20px;
 }
 
 .trends {
@@ -147,8 +157,8 @@
 }
 
 .trendItem {
-  color: white; 
-  margin: 5px 0; 
+  color: white;
+  margin: 5px 0;
 }
 
 .tweetCount {
@@ -157,7 +167,7 @@
 }
 
 .hashtags {
-  background-color:#292e43;
+  background-color: #292e43;
   min-height: 200px;
   border-radius: 50px;
   padding: 5%;

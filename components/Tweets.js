@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import styles from "../styles/tweets.module.css";
 import { logout } from "../reducers/user";
 import { useDispatch, useSelector } from "react-redux";
-import TweetPop from "./TweetPop";
 
 function Tweet() {
   const dispatch = useDispatch();
@@ -40,16 +39,20 @@ function Tweet() {
 
   const allTweet = dataTweet.map((elments, i) => {
     return (
-      // <TweetPop key={i} />
       <div key={i} className={styles.tweetPop}>
-        {token.username}
-        {elments.description}
+        <div className={styles.profil}>
+          <img
+            src="profile.png"
+            alt="Profile"
+            className={styles.logotweetPop}
+          />
+          @{token.username}
+        </div>
+        {/* <br /> */}
+        <div className={styles.desc}>{elments.description}</div>
       </div>
     );
   });
-  // dataTweet.map((elments, i) => {
-  //   return
-  // })
 
   const handleLogout = () => {
     dispatch(logout());
